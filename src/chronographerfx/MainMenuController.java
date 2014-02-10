@@ -7,9 +7,9 @@
 package chronographerfx;
 
 import java.io.*;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
 
 //import com.sun.java.util.jar.pack.Package.File;
 import com.thoughtworks.xstream.XStream;
@@ -70,15 +70,41 @@ public class MainMenuController implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 		// TODO
 	}    
+	
+	static void saveTimeline(Timeline tl){
+		TreeMap<String, Event> events = tl.getEvents();
+		//Make a directory for the timeline
+		String timeline = tl.getName();
+		File dir = new File(timeline);
+		dir.mkdir();
+		//Save each event to the timeline's folder
+		for(String name : events.keySet()){
+			Event e = events.get(name);
+			saveEvent(e, e.getName(), timeline);
+		}
+	}
+	
+	static Timeline loadTimeline(String timelineName){
+		Timeline timeline = new Timeline(timelineName);
+		//Get a list of all files(events) in timeline directory, then load each one
+		File dir = new File(timelineName);
+		File[] files = dir.listFiles();
+		for(File f : files){
+			if(f.isFile()){
+				timeline.addEvent(loadEvent(timelineName + "\\" + f.getName()));			
+			}
+		}
+		return timeline;
+	}
 
 	//Ref: http://stackoverflow.com/questions/13063815/save-xml-file-with-xstream
-	static void saveEvent(Event event, String filename){
+	static void saveEvent(Event event, String filename, String timeline){
 		XStream xstream = new XStream(); 
 
 		xstream.alias(event.getName(), Event.class);
 		String xml = xstream.toXML(event);
 		try{
-			FileOutputStream out = new FileOutputStream(filename + ".xml");
+			FileOutputStream out = new FileOutputStream(timeline + "\\" + filename + ".xml");
 			//out.write("<?xml version=\"1.4.6\"?>".getBytes("UTF-8")); //write XML header, as XStream doesn't do that for us
 			byte[] bytes = xml.getBytes("UTF-8");
 			out.write(bytes);
@@ -93,27 +119,15 @@ public class MainMenuController implements Initializable {
 	static Event loadEvent(String filename){
 		XStream xstream = new XStream();
 		Event event = null;
-		String path = "C:\\Users\\Leanne\\Documents\\GitHub\\Chronographer\\";
+		String path = System.getProperty("user.dir");
+		
 		try{
-			File xmlFile = new File(path + filename + ".xml");
+			File xmlFile = new File(path + "\\" + filename);
 			event = (Event)xstream.fromXML(xmlFile);       
 		}catch(Exception e){
 			System.err.println("Error in XML Read: " + e.getMessage());
 		}
-
-		/*try{
-			FileInputStream in = new FileInputStream(filename);
-			/*byte[] bytes = new byte[1000000000];
-			in.read(bytes);
-			String xml = bytes.toString();
-			e = (Event)xstream.fromXML(in);
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-			System.out.println("File not found");
-		} catch (IOException e1) {
-			e1.printStackTrace();
-			System.out.println("Could not read file.");
-		}*/
+		
 		return event;
 	}
 }
