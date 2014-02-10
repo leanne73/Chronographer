@@ -1,4 +1,4 @@
-package chronographer;
+package chronographerfx;
 
 import java.util.TreeMap;
 

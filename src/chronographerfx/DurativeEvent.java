@@ -1,4 +1,4 @@
-package chronographer;
+package chronographerfx;
 
 public class DurativeEvent extends Event {
 

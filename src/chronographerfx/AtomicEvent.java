@@ -1,7 +1,7 @@
 //Brian Williamson & Leanne Miller
 //CS335, Project, Phase 1
 
-package chronographer;
+package chronographerfx;
 
 public class AtomicEvent extends Event {
 	
