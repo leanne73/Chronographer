@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="chronographerfx.ChronographerMainMenuController">
+  <children>
+    <Text layoutX="237.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="THE CHRONOGRAPHER" />
+    <Text layoutX="376.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="By Leanne Miller and Brian Williamson" />
+    <Button fx:id="newTimeline" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonActionNewTimeline" text="New" />
+    <Button fx:id="loadTimeline" layoutX="58.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonActionLoadTimeline" text="Load" />
+    <Button fx:id="editTimeline" layoutX="104.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonActionEditTimeline" text="Edit" />
+    <Button fx:id="viewTimeline" layoutX="145.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonActionViewTimeline" text="View" />
+    <Button fx:id="exit" layoutX="191.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonActionQuit" text="Exit" />
+    <ScrollPane layoutX="14.0" layoutY="81.0" pannable="true" prefHeight="305.0" prefWidth="564.0">
+      <content>
+        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="309.0" prefWidth="563.0" />
+      </content>
+    </ScrollPane>
+    <TextField layoutX="15.0" layoutY="49.0" prefWidth="200.0" />
+  </children>
+  <effect>
+    <DropShadow color="#646464" offsetX="5.0" offsetY="5.0" />
+  </effect>
+</AnchorPane>
