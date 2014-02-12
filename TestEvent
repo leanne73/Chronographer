@@ -1,0 +1,6 @@
+<?xml version="1.4.6"?><chronographerfx.AtomicEvent>
+  <name>MyEvent</name>
+  <category>Category</category>
+  <startDate>Now</startDate>
+  <description>Stuffs</description>
+</chronographerfx.AtomicEvent>

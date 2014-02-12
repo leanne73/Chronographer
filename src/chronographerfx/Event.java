@@ -1,4 +1,4 @@
-package chronographer;
+package chronographerfx;
 //Brian Williamson & Leanne Miller
 //CS335, Project, Phase 1
 
@@ -9,10 +9,10 @@ package chronographer;
 
 public abstract class Event {
 
-	String name;
-	String category;
-	String startDate;
-	String description;
+	private String name;
+	private String category;
+	private String startDate;
+	private String description;
 	
 	public Event(String n, String c, String s, String d){
 		setName(n);

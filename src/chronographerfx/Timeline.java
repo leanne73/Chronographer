@@ -1,4 +1,4 @@
-package chronographer;
+package chronographerfx;
 
 import java.util.TreeMap;
 
@@ -9,7 +9,17 @@ public class Timeline {
 	
 	public Timeline(String n){
 		name = n;
-		events = null;
+		events = new TreeMap<String, Event>();
+	}
+	
+	public Timeline(String n, TreeMap<String, Event> e){
+		name = n;
+		events = e;
+	}
+	
+	//Return iterator instead?
+	public TreeMap<String, Event> getEvents(){
+		return events;
 	}
 	
 	public String getName(){

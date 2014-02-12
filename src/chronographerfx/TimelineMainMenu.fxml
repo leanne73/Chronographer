@@ -15,14 +15,17 @@
     <Button fx:id="newTimeline" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonActionNewTimeline" text="New" />
     <Button fx:id="loadTimeline" layoutX="58.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonActionLoadTimeline" text="Load" />
     <Button fx:id="editTimeline" layoutX="104.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonActionEditTimeline" text="Edit" />
-    <Button fx:id="viewTimeline" layoutX="145.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonActionViewTimeline" text="View" />
+    <Button fx:id="viewTimeline" layoutX="145.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleButtonActionViewTimeline" text="View" />
     <Button fx:id="exit" layoutX="191.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonActionQuit" text="Exit" />
-    <ScrollPane layoutX="14.0" layoutY="81.0" pannable="true" prefHeight="305.0" prefWidth="564.0">
-      <content>
-        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="309.0" prefWidth="563.0" />
-      </content>
-    </ScrollPane>
-    <TextField layoutX="15.0" layoutY="49.0" prefWidth="200.0" />
+    <TextField id="filenameField" fx:id="inputFilename" layoutX="15.0" layoutY="49.0" prefWidth="200.0" promptText="Put file name here" text="" />
+    <TextField id="filenameField" fx:id="inputEventName" layoutX="15.0" layoutY="219.0" prefWidth="200.0" promptText="Put event names here" text="" />
+    <TextField id="filenameField" fx:id="inputStartDate" layoutX="15.0" layoutY="254.0" prefWidth="200.0" promptText="Put start date here" text="" />
+    <CheckBox id="d" fx:id="durativeEvent" layoutX="228.0" layoutY="288.0" mnemonicParsing="false" text="Durative Event?" />
+    <TextField id="filenameField" fx:id="inputEndDate" layoutX="15.0" layoutY="285.0" prefWidth="200.0" promptText="Put end date here" text="" />
+    <TextField id="filenameField" fx:id="inputCategory" layoutX="15.0" layoutY="322.0" prefWidth="200.0" promptText="Put category here" text="" />
+    <Button id="newTimeline" fx:id="addEvent" layoutX="15.0" layoutY="358.0" mnemonicParsing="false" onAction="#handleButtonActionNewEvent" text="Add Event" />
+    <Text layoutX="15.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Timeline:" />
+    <TextField fx:id="inputDescription" layoutX="230.0" layoutY="322.0" prefWidth="200.0" promptText="Put event description here" />
   </children>
   <effect>
     <DropShadow color="#646464" offsetX="5.0" offsetY="5.0" />
