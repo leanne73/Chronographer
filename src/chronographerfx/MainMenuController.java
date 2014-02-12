@@ -11,7 +11,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
 
-//import com.sun.java.util.jar.pack.Package.File;
+import com.sun.java.util.jar.pack.Package.File;
 import com.thoughtworks.xstream.XStream;
 
 import javafx.event.ActionEvent;
@@ -39,32 +39,63 @@ public class MainMenuController implements Initializable {
 	private Button editTimeline;
 	private Button viewTimeline;
 	private Button exit;
-	private TextField input;
-
+	private TextField inputFileName;
+	private TextField inputEventName;
+        private TextField inputStartDate;
+        private TextField inputEndDate;
+        private TextField inputCategory;
+        private TextField inputDescription;
+        private Button addEvent;
+        private CheckBox durativeEvent;
+        
+        private Timeline workingTimeline;
+               
 	@FXML
 	private void handleButtonActionNewTimeline(ActionEvent event) throws Exception {
-
+                String timelineName = input.getText();
+                workingTimeline = new Timeline(timelineName);
+                saveTimeline(workingTimeline);
+                //stuff to display timeline
 	}
 
 	@FXML
 	private void handleButtonActionEditTimeline(ActionEvent event) {
-		//Send to next menu depending on button press
+		
 	}
 
 	@FXML
 	private void handleButtonActionLoadTimeline(ActionEvent event) {
-		//Send to next menu depending on button press
+                String timelineName = input.getText();
+                workingTimeline = loadTimeline(timelineName);
+                //Stuff to display timeline
 	}
 
 	@FXML
 	private void handleButtonActionViewTimeline(ActionEvent event) throws Exception {
-
+                String timelineName = input.getText();
+                workingTimeline = loadTimeline(timelineName);
+                //Stuff to render timeline
 	}
 
 	@FXML
 	private void handleButtonActionQuit(ActionEvent event) {
 		System.exit(0);
 	}
+        
+        private void handleButtonActionNewEvent(ActionEvent event) throws Exception {
+                Event baseEvent;
+                String eventName = inputEventName.getText();
+                String startDate = inputStartDate.getText();
+                String category = inputCategory.getText();
+                String description = inputDescription.getText();
+                if (durativeEvent.isSelected()) {
+                    String endDate = inputEndDate.getText();
+                    baseEvent = new DurativeEvent(eventName, category, startDate, description, endDate);
+                } else {
+                    baseEvent = new AtomicEvent(eventName, category, startDate, description);
+                }
+                workingTimeline.addEvent(baseEvent);
+        }
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
