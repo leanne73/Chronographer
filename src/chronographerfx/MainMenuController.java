@@ -11,7 +11,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
 
-import com.sun.java.util.jar.pack.Package.File;
+//import com.sun.java.util.jar.pack.Package.File;
 import com.thoughtworks.xstream.XStream;
 
 import javafx.event.ActionEvent;
@@ -36,7 +36,6 @@ public class MainMenuController implements Initializable {
 	@FXML
 	private Button newTimeline;
 	private Button loadTimeline;
-	private Button editTimeline;
 	private Button viewTimeline;
 	private Button exit;
 	private TextField inputFileName;
@@ -52,27 +51,22 @@ public class MainMenuController implements Initializable {
                
 	@FXML
 	private void handleButtonActionNewTimeline(ActionEvent event) throws Exception {
-                String timelineName = input.getText();
+                String timelineName = inputFileName.getText();
                 workingTimeline = new Timeline(timelineName);
                 saveTimeline(workingTimeline);
-                //stuff to display timeline
-	}
-
-	@FXML
-	private void handleButtonActionEditTimeline(ActionEvent event) {
-		
+                //stuff to display events
 	}
 
 	@FXML
 	private void handleButtonActionLoadTimeline(ActionEvent event) {
-                String timelineName = input.getText();
+                String timelineName = inputFileName.getText();
                 workingTimeline = loadTimeline(timelineName);
-                //Stuff to display timeline
+                //Stuff to display events
 	}
 
 	@FXML
 	private void handleButtonActionViewTimeline(ActionEvent event) throws Exception {
-                String timelineName = input.getText();
+                String timelineName = inputFileName.getText();
                 workingTimeline = loadTimeline(timelineName);
                 //Stuff to render timeline
 	}
