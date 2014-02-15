@@ -13,14 +13,17 @@ public class SaveEventTest {
 
 	@Test
 	public void test() {
-		String filename = "TestEvent";
-		Event toSave = new AtomicEvent("MyEvent","Category","Now","Stuffs");
+		//Create test timeline and event
+		String eventName = "TestEvent";
+		Timeline timeline = new Timeline("TestTimeline2");
+		Event toSave = new AtomicEvent(eventName,"Category","Now","Stuffs", timeline);
+		String filename = timeline.getName() + "\\" + eventName + ".xml";
+		
 		//Create timeline directory to save to
-		String timeline = "TestTimeline";
-		File dir = new File(timeline);
+		File dir = new File(timeline.getName());
 		dir.mkdir();
-		MainMenuController.saveEvent(toSave, filename, timeline);	
-		Event savedEvent = MainMenuController.loadEvent(filename);
+		ChronographerMainMenuController.saveEvent(toSave, eventName, timeline.getName());	
+		Event savedEvent = ChronographerMainMenuController.loadEvent(filename);
 		assert(toSave.equals(savedEvent));
 		//System.out.println(savedEvent.getName() + savedEvent.getDescription());
 	}

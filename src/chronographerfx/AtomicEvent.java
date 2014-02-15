@@ -5,7 +5,7 @@ package chronographerfx;
 
 public class AtomicEvent extends Event {
 	
-	public AtomicEvent(String n, String c, String s, String d) {
-		super(n,c,s,d);
+	public AtomicEvent(String name, String category, String startDate, String description, Timeline t) {
+		super(name, category, startDate, description, t);
 	}
 }
