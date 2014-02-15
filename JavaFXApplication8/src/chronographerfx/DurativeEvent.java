@@ -4,9 +4,9 @@ public class DurativeEvent extends Event {
 
 	String endDate;
 	
-	public DurativeEvent(String name, String category, String startDate, String description, String endDate, Timeline t) {
-		super(name, category, startDate, description, t);
-		setEndDate(endDate);
+	public DurativeEvent(String n, String c, String s, String d, String e) {
+		super(n,c,s,d);
+		setEndDate(e);
 	}
 	
 	public void setEndDate(String s){

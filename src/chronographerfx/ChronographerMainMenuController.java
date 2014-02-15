@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package chronographerfx;
 
@@ -27,11 +22,11 @@ import javafx.scene.layout.Pane;
 
 /**
  *
- * @author Brian
+ * @author Brian & Leanne
  */
 
 //Main Menu Controller
-public class MainMenuController implements Initializable {
+public class ChronographerMainMenuController implements Initializable {
 
 	@FXML
 	private Button newTimeline;
@@ -84,9 +79,9 @@ public class MainMenuController implements Initializable {
                 String description = inputDescription.getText();
                 if (durativeEvent.isSelected()) {
                     String endDate = inputEndDate.getText();
-                    baseEvent = new DurativeEvent(eventName, category, startDate, description, endDate);
+                    baseEvent = new DurativeEvent(eventName, category, startDate, description, endDate, workingTimeline);
                 } else {
-                    baseEvent = new AtomicEvent(eventName, category, startDate, description);
+                    baseEvent = new AtomicEvent(eventName, category, startDate, description, workingTimeline);
                 }
                 workingTimeline.addEvent(baseEvent);
         }
