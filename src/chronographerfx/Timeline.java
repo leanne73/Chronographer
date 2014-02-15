@@ -10,7 +10,7 @@ import java.util.TreeMap;
 
 public class Timeline {
 
-	private TreeMap<String, Event> events; //A map from event start dates to the events themselves
+	private TreeMap<String, Event> events; //A map from event names to the events themselves
 	private String name;
 	private CategoryList categories;
 
@@ -47,7 +47,7 @@ public class Timeline {
 	}
 
 	public void addEvent(Event e){
-		events.put(e.getStartDate(), e);
+		events.put(e.getName(), e);
 	}
 
 	public void deleteEvent(Event e){
