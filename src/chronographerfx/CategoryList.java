@@ -5,40 +5,31 @@ package chronographerfx;
 
 import java.util.*;
 
-/* A singleton class. 
- * Used http://howtodoinjava.com/2012/10/22/singleton-design-pattern-in-java/
- * as a reference when creating it. */
+//Maintains a list of categories for a timeline. Makes sure that there are no duplicate categories.
 public class CategoryList {
-	private static volatile CategoryList instance = null;
-
-	private LinkedList<String> list;	
-	private CategoryList() {
+	private LinkedList<String> list;
+	
+	public CategoryList(){
 		list = new LinkedList<String>();
 	}
 	
-	public static CategoryList getInstance(){
-		if(instance == null){
-			synchronized(CategoryList.class){
-				//Double check in case 2 threads perform the first check 
-				//at the same time and both try to create an instance
-				if(instance == null){
-					instance = new CategoryList();
-				}
-			}
-		}
-		return instance;
-	}
-	
 	public void addCategory(String s) {
-		list.add(s);
+		if(!list.contains(s)){
+			list.add(s);
+		}	
 	}
 	
 	public void removeCategory(String s){
 		list.remove(s);
 	}
 	
+	public boolean contains(String s){
+		return list.contains(s);
+	}
+	
+	@SuppressWarnings("unchecked")
 	public LinkedList<String> getCategories(){
-		return list;
+		return (LinkedList<String>) list.clone();
 	}
 	
 }

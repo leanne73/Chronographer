@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package chronographerfx;
 
@@ -27,65 +22,56 @@ import javafx.scene.layout.Pane;
 
 /**
  *
- * @author Brian
+ * @author Brian & Leanne
  */
 
 //Main Menu Controller
-public class MainMenuController implements Initializable {
+public class ChronographerMainMenuController implements Initializable {
 
 	@FXML
-	public Button newTimeline;
-	public Button loadTimeline;
-	public Button viewTimeline;
-        public Button editTimeline;
-	public Button exit;
-	public TextField inputFileName;
-	public TextField inputEventName;
-        public TextField inputStartDate;
-        public TextField inputEndDate;
-        public TextField inputCategory;
-        public TextField inputDescription;
-        public Button addEvent;
-        public CheckBox durativeEvent;
+	private Button newTimeline;
+	private Button loadTimeline;
+	private Button viewTimeline;
+	private Button exit;
+	private TextField inputFileName;
+	private TextField inputEventName;
+        private TextField inputStartDate;
+        private TextField inputEndDate;
+        private TextField inputCategory;
+        private TextField inputDescription;
+        private Button addEvent;
+        private CheckBox durativeEvent;
         
-        protected Timeline workingTimeline;
+        private Timeline workingTimeline;
                
 	@FXML
-	public void handleButtonActionNewTimeline(ActionEvent event) throws Exception {
+	private void handleButtonActionNewTimeline(ActionEvent event) throws Exception {
                 String timelineName = inputFileName.getText();
                 workingTimeline = new Timeline(timelineName);
                 saveTimeline(workingTimeline);
+                //stuff to display events
 	}
 
 	@FXML
-	public void handleButtonActionLoadTimeline(ActionEvent event) {
+	private void handleButtonActionLoadTimeline(ActionEvent event) {
                 String timelineName = inputFileName.getText();
                 workingTimeline = loadTimeline(timelineName);
+                //Stuff to display events
 	}
-        
-        @FXML
-        public void handleButtonActionEditTimeline(ActionEvent event) throws Exception {
-                String timelineName = inputFileName.getText();
-                try { java.awt.Desktop.getDesktop().edit(loadTimelineFile(timelineName)); }
-                catch(IOException e) {
-                    System.err.println("Error in XML Read: " + e.getMessage());
-                }
-        }
 
 	@FXML
-	public void handleButtonActionViewTimeline(ActionEvent event) {
+	private void handleButtonActionViewTimeline(ActionEvent event) throws Exception {
                 String timelineName = inputFileName.getText();
                 workingTimeline = loadTimeline(timelineName);
                 //Stuff to render timeline
 	}
 
 	@FXML
-	public void handleButtonActionQuit(ActionEvent event) {
+	private void handleButtonActionQuit(ActionEvent event) {
 		System.exit(0);
 	}
         
-        @FXML
-        public void handleButtonActionAddEvent(ActionEvent event) {
+        private void handleButtonActionNewEvent(ActionEvent event) throws Exception {
                 Event baseEvent;
                 String eventName = inputEventName.getText();
                 String startDate = inputStartDate.getText();
@@ -102,7 +88,7 @@ public class MainMenuController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		// TODO
+		// Placeholder
 	}    
 	
 	static void saveTimeline(Timeline tl){
@@ -164,16 +150,4 @@ public class MainMenuController implements Initializable {
 		
 		return event;
 	}
-        
-        static File loadTimelineFile(String filename){
-            XStream xstream = new XStream();
-            Event event = null;
-            String path = System.getProperty("user.dir");
-            File xmlFile = new File(path + "\\" + filename);
-            
-            try{ event = (Event)xstream.fromXML(xmlFile); }
-            catch(Exception e){ System.err.println("Error in XML Read: " + e.getMessage()); }
-            
-            return xmlFile;
-        }
 }
