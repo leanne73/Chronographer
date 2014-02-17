@@ -1,4 +1,3 @@
-
 package chronographerfx;
 
 import java.io.*;
@@ -22,56 +21,65 @@ import javafx.scene.layout.Pane;
 
 /**
  *
- * @author Brian & Leanne
+ * @author Brian
  */
 
 //Main Menu Controller
 public class ChronographerMainMenuController implements Initializable {
 
 	@FXML
-	private Button newTimeline;
-	private Button loadTimeline;
-	private Button viewTimeline;
-	private Button exit;
-	private TextField inputFileName;
-	private TextField inputEventName;
-        private TextField inputStartDate;
-        private TextField inputEndDate;
-        private TextField inputCategory;
-        private TextField inputDescription;
-        private Button addEvent;
-        private CheckBox durativeEvent;
+	public Button newTimeline;
+	public Button loadTimeline;
+	public Button viewTimeline;
+        public Button editTimeline;
+	public Button exit;
+	public TextField inputFileName;
+	public TextField inputEventName;
+        public TextField inputStartDate;
+        public TextField inputEndDate;
+        public TextField inputCategory;
+        public TextField inputDescription;
+        public Button addEvent;
+        public CheckBox durativeEvent;
         
-        private Timeline workingTimeline;
+        protected Timeline workingTimeline;
                
 	@FXML
-	private void handleButtonActionNewTimeline(ActionEvent event) throws Exception {
+	public void handleButtonActionNewTimeline(ActionEvent event) throws Exception {
                 String timelineName = inputFileName.getText();
                 workingTimeline = new Timeline(timelineName);
                 saveTimeline(workingTimeline);
-                //stuff to display events
 	}
 
 	@FXML
-	private void handleButtonActionLoadTimeline(ActionEvent event) {
+	public void handleButtonActionLoadTimeline(ActionEvent event) {
                 String timelineName = inputFileName.getText();
                 workingTimeline = loadTimeline(timelineName);
-                //Stuff to display events
 	}
+        
+        @FXML
+        public void handleButtonActionEditTimeline(ActionEvent event) throws Exception {
+                String timelineName = inputFileName.getText();
+                try { java.awt.Desktop.getDesktop().edit(loadTimelineFile(timelineName)); }
+                catch(Exception e) {
+                    System.err.println("Error in XML Read: " + e.getMessage());
+                }
+        }
 
 	@FXML
-	private void handleButtonActionViewTimeline(ActionEvent event) throws Exception {
+	public void handleButtonActionViewTimeline(ActionEvent event) {
                 String timelineName = inputFileName.getText();
                 workingTimeline = loadTimeline(timelineName);
                 //Stuff to render timeline
 	}
 
 	@FXML
-	private void handleButtonActionQuit(ActionEvent event) {
+	public void handleButtonActionQuit(ActionEvent event) {
 		System.exit(0);
 	}
         
-        private void handleButtonActionNewEvent(ActionEvent event) throws Exception {
+        @FXML
+        public void handleButtonActionAddEvent(ActionEvent event) {
                 Event baseEvent;
                 String eventName = inputEventName.getText();
                 String startDate = inputStartDate.getText();
@@ -88,7 +96,7 @@ public class ChronographerMainMenuController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		// Placeholder
+		// TODO
 	}    
 	
 	static void saveTimeline(Timeline tl){
@@ -150,4 +158,16 @@ public class ChronographerMainMenuController implements Initializable {
 		
 		return event;
 	}
+        
+        static File loadTimelineFile(String filename){
+            XStream xstream = new XStream();
+            Event event = null;
+            String path = System.getProperty("user.dir");
+            File xmlFile = new File(path + "\\" + filename);
+            
+            try{ event = (Event)xstream.fromXML(xmlFile); }
+            catch(Exception e){ System.err.println("Error in XML Read: " + e.getMessage()); }
+            
+            return xmlFile;
+        }
 }
