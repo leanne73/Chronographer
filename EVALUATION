@@ -1,0 +1,36 @@
+Evaluating the contributions of this submission was impeded by the 
+missing parts. Every thing I tried while running the program produced 
+a null pointer exception, and there seemed to be no progress at all on 
+rendering the timeline. In my judgment the one contribution this 
+submission has made for the project as a whole is the experimentation 
+with XStream, which should be strongly considered in future phases. On 
+specifics:
+
+
+Data modeling and other architecture: The write-up claims that the 
+submission has a "solid back-end", though that is very hard to 
+substantiate. The event and timeline classes are mainly collections of 
+getter and setter methods. There appears to have been little thought 
+in the details of representing the data---for example, dates are all 
+stored as strings, with no explanation (to either the programmer or 
+the user) on how those dates are to be formatted.
+
+JUnit testing: There were minimal JUnit tests. Those that were included
+in the submission did not compile (specifically, they called constructors
+with wrong signatures), and appeared to have been added at the end.
+
+Write-up: The write-up gave appropriate coverage of what tools were
+used (XStream, JavaFX), but provided no guidance in inspecting code
+or using the application.
+
+Features implemented: There were attempts at implementing the 
+atomic/durative distinction, but it was impossible to tell to what 
+extent. The Event class had a "categories" instance variable,
+but that does not constitute a full implementation of that feature.
+
+Documentation and style: There was essentially no documentation.
+
+Concurrency: I did not see any concurrency problems, but that may have 
+been taken care of by JavaFX (and the features that would have exposed 
+concurrency problems were largely unimplemented).
+
